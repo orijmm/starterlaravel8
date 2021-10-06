@@ -68,9 +68,8 @@ class UserController extends BaseController
                 ], 422);
             }
             $accessToken = auth()->user()->createToken('authToken')->accessToken;
-
             $responseMessage = "Login Successful";
-            return $this->respondWithToken($accessToken->token, $responseMessage, auth()->user());
+            return $this->respondWithToken($accessToken, $responseMessage, auth()->user());
         } else {
             $responseMessage = "Sorry, this user does not exist";
             return response()->json([
