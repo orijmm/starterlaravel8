@@ -56,7 +56,10 @@ class SettingController extends BaseController
         $validator = Validator::make($input, [
             'name_company' => 'required',
             'description' => 'required',
-            'country' => 'required',
+            'country_id' => 'required',
+            'state_id' => 'required',
+            'city_id' => 'required',
+            'currency_id' => 'required',
             'email' => 'required',
             'locale' => 'required',
             'timezone' => 'required',
@@ -71,14 +74,4 @@ class SettingController extends BaseController
         return $this->sendResponse($setting, 'setting updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Setting $setting)
-    {
-        //
-    }
 }
