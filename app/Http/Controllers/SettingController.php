@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Nnjeim\World\World;
 
 class SettingController extends BaseController
 {
@@ -14,7 +16,14 @@ class SettingController extends BaseController
      */
     public function index()
     {
-        //
+        $action =  World::countries();
+
+        if ($action->success) {
+
+            $countries = $action->data;
+        }
+
+        return $this->sendResponse($countries, 'contries retrieved successfully.');
     }
 
 
@@ -42,7 +51,24 @@ class SettingController extends BaseController
      */
     public function update(Request $request, Setting $setting)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
+            'name_company' => 'required',
+            'description' => 'required',
+            'country' => 'required',
+            'email' => 'required',
+            'locale' => 'required',
+            'timezone' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
+
+        $setting->update($input);
+
+        return $this->sendResponse($setting, 'setting updated successfully.');
     }
 
     /**

@@ -18,14 +18,20 @@ class CreateSettingsTable extends Migration
             $table->string('name_company');
             $table->text('description')->nullable();
             $table->text('address')->nullable();
-            $table->string('region')->nullable();
-            $table->string('commune')->nullable();
-            $table->string('country')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->string('locale')->nullable();
-            $table->string('timezone')->nullable();
+            $table->string('locale');
+            $table->string('timezone');
+            $table->unsignedBigInteger('state_id');
+            $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('currency_id');
             $table->timestamps();
+
+            $table->foreign('state_id')->references('id')->on('states');
+            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('country_id')->references('id')->on('countries');
+            $table->foreign('currency_id')->references('id')->on('currencies');
         });
     }
 
