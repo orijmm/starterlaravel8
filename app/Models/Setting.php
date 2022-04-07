@@ -18,14 +18,17 @@ class Setting extends Model
         'name_company',
         'description',
         'address',
-        'region',
-        'commune',
-        'country',
         'phone',
         'email',
         'locale',
-        'timezone'
+        'timezone',
+        'state_id',
+        'city_id',
+        'country_id',
+        'currency_id'
     ];
+
+    //faltan relaciones de state,city,country and currency
 
     /**
      * Get all of the media for settings.
@@ -34,4 +37,5 @@ class Setting extends Model
     {
         return $this->morphToMany(Media::class, 'mediable');
     }
+
 }

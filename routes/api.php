@@ -55,6 +55,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('roles/{user}/assingRole', [RoleController::class, 'assingRole']);
 
         //settings
+        Route::get('settings', [SettingController::class, 'index']);
         Route::get('settings/{setting}', [SettingController::class, 'show']);
         Route::put('settings/{setting}/update', [SettingController::class, 'update']);
         Route::delete('settings/{setting}/delete', [SettingController::class, 'destroy']);
