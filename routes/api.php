@@ -58,7 +58,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('settings', [SettingController::class, 'index']);
         Route::get('settings/{setting}', [SettingController::class, 'show']);
         Route::put('settings/{setting}/update', [SettingController::class, 'update']);
-        Route::delete('settings/{setting}/delete', [SettingController::class, 'destroy']);
     });
 
     //no admin users

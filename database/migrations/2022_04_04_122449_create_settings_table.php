@@ -28,10 +28,6 @@ class CreateSettingsTable extends Migration
             $table->unsignedBigInteger('currency_id');
             $table->timestamps();
 
-            $table->foreign('state_id')->references('id')->on('states');
-            $table->foreign('city_id')->references('id')->on('cities');
-            $table->foreign('country_id')->references('id')->on('countries');
-            $table->foreign('currency_id')->references('id')->on('currencies');
         });
     }
 
